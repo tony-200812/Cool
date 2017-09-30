@@ -68,6 +68,9 @@ ClassGenNCAutoScope=None
 [GeneratedDocument1]
 DocumentPath=..\..\PCB\GK7023\V0.3\GK7023-V03.PcbDoc.htm
 
+[GeneratedDocument2]
+DocumentPath=..\..\PCB\GK7024\V0.6\GK7024-V06.PcbDoc.htm
+
 [Generic_SmartPDF]
 AutoOpenFile=-1
 
