@@ -1,0 +1,32 @@
+Dependencies for Project 'Cool', Target 'Cool': (DO NOT MODIFY !)
+F (..\..\System\core_cm3.c)(0x4C0C587E)(--c99 -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\..\System -I ..\..\Code-I.\RTE\_Cool-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_HD -DSTM32F10X_HD-o .\objects\core_cm3.o --omf_browse .\objects\core_cm3.crf --depend .\objects\core_cm3.d)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
+F (..\..\System\startup_stm32f10x_md.s)(0x4D783CD2)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\_Cool-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 524" --pd "STM32F10X_HD SETA 1"--list .\listings\startup_stm32f10x_md.lst --xref -o .\objects\startup_stm32f10x_md.o --depend .\objects\startup_stm32f10x_md.d)
+F (..\..\System\system_stm32f10x.c)(0x59E8AF42)(--c99 -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\..\System -I ..\..\Code-I.\RTE\_Cool-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_HD -DSTM32F10X_HD-o .\objects\system_stm32f10x.o --omf_browse .\objects\system_stm32f10x.crf --depend .\objects\system_stm32f10x.d)
+I (..\..\System\stm32f10x.h)(0x4EF91350)
+I (..\..\System\core_cm3.h)(0x4D523B58)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (..\..\System\system_stm32f10x.h)(0x4D783CAA)
+F (..\..\Code\main.c)(0x59E8ACF2)(--c99 -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\..\System -I ..\..\Code-I.\RTE\_Cool-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_HD -DSTM32F10X_HD-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (..\..\System\stm32f10x.h)(0x4EF91350)
+I (..\..\System\core_cm3.h)(0x4D523B58)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (..\..\System\system_stm32f10x.h)(0x4D783CAA)
+I (..\..\Code\config.h)(0x59E8AC64)
+F (..\..\Code\config.c)(0x59E8B414)(--c99 -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\..\System -I ..\..\Code-I.\RTE\_Cool-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_HD -DSTM32F10X_HD-o .\objects\config.o --omf_browse .\objects\config.crf --depend .\objects\config.d)
+I (..\..\System\stm32f10x.h)(0x4EF91350)
+I (..\..\System\core_cm3.h)(0x4D523B58)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (..\..\System\system_stm32f10x.h)(0x4D783CAA)
+F (..\..\Code\lcd.c)(0x59E8B512)(--c99 -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\..\System -I ..\..\Code-I.\RTE\_Cool-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_HD -DSTM32F10X_HD-o .\objects\lcd.o --omf_browse .\objects\lcd.crf --depend .\objects\lcd.d)
+I (..\..\System\stm32f10x.h)(0x4EF91350)
+I (..\..\System\core_cm3.h)(0x4D523B58)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (..\..\System\system_stm32f10x.h)(0x4D783CAA)
+I (..\..\Code\lcd.h)(0x59E8B4B7)
+F (..\..\Code\voice.c)(0x59E89B87)(--c99 -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\..\System -I ..\..\Code-I.\RTE\_Cool-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_HD -DSTM32F10X_HD-o .\objects\voice.o --omf_browse .\objects\voice.crf --depend .\objects\voice.d)
+I (..\..\System\stm32f10x.h)(0x4EF91350)
+I (..\..\System\core_cm3.h)(0x4D523B58)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (..\..\System\system_stm32f10x.h)(0x4D783CAA)
+F (..\..\Code\flash.c)(0x59E8B4EB)(--c99 -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\..\System -I ..\..\Code-I.\RTE\_Cool-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_HD -DSTM32F10X_HD-o .\objects\flash.o --omf_browse .\objects\flash.crf --depend .\objects\flash.d)
