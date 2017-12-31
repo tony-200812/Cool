@@ -13,7 +13,8 @@ void RCC_CONFIG(void)
 				   RCC_APB2ENR_IOPCEN | RCC_APB2ENR_IOPDEN |
 				   RCC_APB2ENR_IOPEEN | RCC_APB2ENR_AFIOEN;
 				  
-	RCC->APB1ENR = RCC_APB1ENR_TIM4EN | RCC_APB1ENR_DACEN;
+	RCC->APB1ENR = RCC_APB1ENR_TIM4EN | RCC_APB1ENR_DACEN  |
+				   RCC_APB1ENR_TIM2EN;
 
 	RCC->AHBENR  = RCC_AHBENR_FSMCEN;	
 }
@@ -54,7 +55,7 @@ void GPIO_CONFIG(void)
 	GPIOC->CRH = GPIO_CRH_CNF10_1 | GPIO_CRH_MODE10 |		//UART4_TX
 				 GPIO_CRH_CNF11_0;							//UART4_RX
 
-	GPIOD->CRL = GPIO_CRL_CNF1_1  | GPIO_CRL_MODE0  |		//D02
+	GPIOD->CRL = GPIO_CRL_CNF0_1  | GPIO_CRL_MODE0  |		//D02
 				 GPIO_CRL_CNF1_1  | GPIO_CRL_MODE1  |		//D03
 				 GPIO_CRL_CNF4_1  | GPIO_CRL_MODE4  |		//RW
 				 GPIO_CRL_CNF5_1  | GPIO_CRL_MODE5  |		//WR
@@ -79,6 +80,10 @@ void GPIO_CONFIG(void)
 				 GPIO_CRH_CNF15_1 | GPIO_CRH_MODE15;		//D12
 
 	AFIO->MAPR = 2 << 24;	//SWD
+	
+	GPIOA->BSRR = 1 << 1;
+	GPIOB->BSRR = 1 << 10;
+	GPIOD->BSRR = 1 << 4 | 1 << 5 | 1 << 7 | 1 << 11;
 }
 
 /*******************************************************************************
@@ -89,7 +94,7 @@ void GPIO_CONFIG(void)
 ********************************************************************************/
 void DAC1_CONFIG(void)
 {
-	DAC->CR  = 0x8AC;
+	DAC->CR  = 0x83C;
 	DAC->CR |= 1;			//DAC1使能
 	
 	DAC->DHR12R1  = 0;		
@@ -102,7 +107,7 @@ void DAC1_CONFIG(void)
  入口参数：	无
  出口参数：	无
 ********************************************************************************/
-void TIM4_Config(void)
+void TIM4_CONFIG(void)
 {
  	TIM4->ARR   = 125;
 	TIM4->PSC   = 72;  					//预分频器
@@ -110,7 +115,7 @@ void TIM4_Config(void)
 	TIM4->DIER |= 1 << 0;   			//允许更新中断				
 	TIM4->DIER |= 1 << 6;   			//允许触发中断
 		  							
-	TIM4->CR1|=0x01;    				//使能定时器3
+	TIM4->CR1 |= 0x01;    				//使能定时器4
 	
   	NVIC->IP[TIM4_IRQn] = 0x00;        //中断优先级
     NVIC->ISER[TIM4_IRQn >> 0x05] = (u32)0x01 << (TIM4_IRQn & (u8)0x1F);//	
@@ -227,24 +232,24 @@ void EXTI7_CONFIG(void)
 ********************************************************************************/
 void TIM2_CONFIG(void)
 {	
-	TIM2->CR1 = 0;
+	u32 temp;
 	
-	TIM2->CR1 = (1 << 7) | (0 << 4) | (1 << 2);
-	TIM2->CR2 = 0;
-	TIM2->SMCR = 0;
-	TIM2->DIER = 1 << 1;
-	TIM2->CCMR1 = (1 << 4) | (1 << 3);
-	TIM2->CCMR2 = 0;
-	TIM2->CCER = 0;
-	TIM2->PSC = SystemCoreClock / 10000 - 1;  
-	TIM2->ARR = 200;
-	TIM2->CCR1 = 200;
+	temp = SystemCoreClock / 4 / 1000;	
+	
+	TIM2->CR1   = 0;
+	TIM2->PSC   = 3;	  					//预分频值
+	TIM2->RCR   = 0;    					//重复记数值,下次脉冲有效
+	TIM2->EGR   = 1 << 0;					//重新初始化寄存器
+	TIM2->CCER &= ~(1 << 0); 				//高电平有效，其他通道打开
+	TIM2->CR2   = 0;     					//没用
+	TIM2->CR1  |= 0x0080;  					//值装入缓存器
+	TIM2->CCMR1 = (1 << 11) | (7 << 12);  	//配置通道4
+	
+	TIM2->ARR   = temp;
+	TIM2->CCR2  = temp;
 
-	NVIC->IP[TIM2_IRQn] = 0x30;
-    NVIC->ISER[TIM2_IRQn >> 0x05] = 
-      (u32)0x01 << (TIM2_IRQn & (u8)0x1F);
-      
-    TIM2->CR1 |= 1 << 0;
+	TIM2->CCER  = (1 << 4) | (1 << 5);  	//使能输出
+	TIM2->CR1  |= 1 << 0;
 }
 
 /*******************************************************************************
@@ -262,6 +267,36 @@ void IWDG_CONFIG(void)
 	IWDG->KR  = 0xAAAA; //喂狗
 }
 
+
+/*******************************************************************************
+ 函 数 名：	FSMC_Config
+ 功能描述：	LCD总线接口配置
+ 入口参数：	无
+ 出口参数：	无
+********************************************************************************/
+void FSMC_CONFIG(void)
+{
+	/* Bank1 NOR/SRAM control register configuration */ 
+	FSMC_Bank1->BTCR[0] = 
+			0x00000008 |
+			0x00000010 |
+			0x00001000;
+
+	FSMC_Bank1->BTCR[0] |= 0x00000040;
+
+	/* Bank1 NOR/SRAM timing register configuration */
+	FSMC_Bank1->BTCR[1] = 
+			0x02 | (0x00 << 4) | (0x05 << 8) |
+			(0x00 << 16) | (0x00 << 20) | (0x00 << 24) |
+			 0x10000000;
+			
+
+
+	FSMC_Bank1E->BWTR[0] = 0x0FFFFFFF;
+	FSMC_Bank1->BTCR[0] |= 1;
+}
+
+
 /*******************************************************************************
  函 数 名：	STM32_CONFIG
  功能描述：	初始化stm32
@@ -273,6 +308,9 @@ void STM32_CONFIG(void)
 	RCC_CONFIG();
 	GPIO_CONFIG();
 	DAC1_CONFIG();
+	TIM2_CONFIG();
+	TIM4_CONFIG();
+	FSMC_CONFIG();
 //	IWDG_CONFIG();
 }
 

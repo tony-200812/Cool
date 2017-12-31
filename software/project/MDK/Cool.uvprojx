@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\System;..\..\Code</IncludePath>
+              <IncludePath>..\..\System;..\..\Code;..\..\FWlib\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -411,11 +411,6 @@
               <FilePath>..\..\Code\config.c</FilePath>
             </File>
             <File>
-              <FileName>lcd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Code\lcd.c</FilePath>
-            </File>
-            <File>
               <FileName>voice.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\Code\voice.c</FilePath>
@@ -424,6 +419,11 @@
               <FileName>flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\Code\flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Code\lcd.c</FilePath>
             </File>
           </Files>
         </Group>

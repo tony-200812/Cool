@@ -4,3 +4,4 @@
 .\objects\lcd.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\lcd.o: ..\..\System\system_stm32f10x.h
 .\objects\lcd.o: ..\..\Code\lcd.h
+.\objects\lcd.o: ..\..\Code\MM_T035.h
